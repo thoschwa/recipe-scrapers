@@ -255,10 +255,10 @@ class SchemaOrg:
                 # some sites have duplicated name and text properties (1:1)
                 # others have name same as text but truncated to X chars.
                 # ignore name in these cases and add the name value only if it's different from the text
-                if not schema_item.get("text").startswith(
+                if not (isinstance(schema_item.get("name"), int) or schema_item.get("text").startswith(
                     schema_item.get("name").rstrip(".")
-                ):
-                    instructions_gist.append(schema_item_name)
+                )):
+                    instructions_gist.append(schema_item.get("name"))
             if schema_item.get("itemListElement"):
                 schema_item = schema_item.get("itemListElement")
             instructions_gist.append(schema_item.get("text"))
