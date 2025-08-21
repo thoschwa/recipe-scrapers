@@ -249,14 +249,15 @@ class SchemaOrg:
         if type(schema_item) is str:
             instructions_gist.append(schema_item)
         elif schema_item.get("@type") == "HowToStep":
-            if schema_item.get("name", False):
+            schema_item_name = str(schema_item.get("name"))
+             if schema_item_name:
                 # some sites have duplicated name and text properties (1:1)
                 # others have name same as text but truncated to X chars.
                 # ignore name in these cases and add the name value only if it's different from the text
                 if not schema_item.get("text").startswith(
-                    schema_item.get("name").rstrip(".")
+                    schema_item_name.rstrip(".")
                 ):
-                    instructions_gist.append(schema_item.get("name"))
+                    instructions_gist.append(schema_item_name)
             if schema_item.get("itemListElement"):
                 schema_item = schema_item.get("itemListElement")
             instructions_gist.append(schema_item.get("text"))
