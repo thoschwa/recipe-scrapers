@@ -250,7 +250,7 @@ class SchemaOrg:
             instructions_gist.append(schema_item)
         elif schema_item.get("@type") == "HowToStep":
             schema_item_name = str(schema_item.get("name"))
-             if schema_item_name:
+            if schema_item_name:
                 # some sites have duplicated name and text properties (1:1)
                 # others have name same as text but truncated to X chars.
                 # ignore name in these cases and add the name value only if it's different from the text
