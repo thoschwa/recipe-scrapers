@@ -249,8 +249,6 @@ class SchemaOrg:
         if type(schema_item) is str:
             instructions_gist.append(schema_item)
         elif schema_item.get("@type") == "HowToStep":
-            if isinstance(schema_item.get("name"), int):
-                return instructions_gist
             if schema_item.get("name", False):
                 # some sites have duplicated name and text properties (1:1)
                 # others have name same as text but truncated to X chars.
